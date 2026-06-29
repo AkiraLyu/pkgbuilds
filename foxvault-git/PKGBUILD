@@ -1,0 +1,45 @@
+# Maintainer: Akira <akira.uestc@gmail.com>
+pkgname=foxvault-git
+pkgver=0.1.0.r3.g55ebd8c
+pkgrel=1
+pkgdesc="Firefox history archiver with raw, merged SQLite, and TSV exports"
+arch=('x86_64')
+url="https://github.com/AkiraLyu/FoxVault"
+license=('custom:none')
+depends=('gcc-libs' 'systemd')
+makedepends=('cargo' 'git')
+provides=('foxvault')
+conflicts=('foxvault')
+options=('!lto')
+install="$pkgname.install"
+source=(
+    'FoxVault::git+https://github.com/AkiraLyu/FoxVault.git'
+    'foxvault.service'
+)
+sha256sums=(
+    'SKIP'
+    'a21284505759bfd301c718ad0dab5447613cb28a6180bc84c32ac124884e0423'
+)
+
+pkgver() {
+    cd "$srcdir/FoxVault"
+    printf "0.1.0.r%s.g%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
+}
+
+build() {
+    cd "$srcdir/FoxVault"
+    cargo build --release --locked
+}
+
+check() {
+    cd "$srcdir/FoxVault"
+    cargo test --locked
+}
+
+package() {
+    cd "$srcdir/FoxVault"
+    install -Dm755 target/release/FoxVault "$pkgdir/usr/bin/FoxVault"
+    install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+    install -Dm644 config.example.toml "$pkgdir/usr/share/doc/$pkgname/config.example.toml"
+    install -Dm644 "$srcdir/foxvault.service" "$pkgdir/usr/lib/systemd/user/foxvault.service"
+}

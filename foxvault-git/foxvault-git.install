@@ -1,0 +1,22 @@
+post_install() {
+    cat <<'EOF'
+FoxVault user service installed.
+
+Configure it:
+  mkdir -p ~/.config/FoxVault
+  cp /usr/share/doc/foxvault-git/config.example.toml ~/.config/FoxVault/config.toml
+
+Run once:
+  FoxVault
+
+Run once whenever the user systemd manager starts:
+  systemctl --user enable foxvault.service
+
+Run at boot before login:
+  sudo loginctl enable-linger "$USER"
+EOF
+}
+
+post_upgrade() {
+    post_install
+}
