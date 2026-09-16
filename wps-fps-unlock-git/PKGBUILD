@@ -1,0 +1,40 @@
+# Maintainer: Akira <akira.uestc@gmail.com>
+pkgname=wps-fps-unlock-git
+pkgver=r3.g9ab7334
+pkgrel=1
+pkgdesc='WPS presentation frame-rate unlock experiment'
+arch=('x86_64')
+url='https://github.com/AkiraLyu/wps-fps-unlock'
+license=('GPL-3.0-only')
+depends=(bash glibc libfaketime binutils gawk wps-office-cn)
+makedepends=(git)
+provides=(wps-fps-unlock)
+conflicts=(wps-fps-unlock)
+options=('!debug')
+source=("git+$url.git")
+sha256sums=('SKIP')
+
+pkgver() {
+    cd "$srcdir/wps-fps-unlock"
+    printf 'r%s.g%s' "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
+}
+
+prepare() {
+    cd "$srcdir/wps-fps-unlock"
+    sed -i 's|${repo_root}/build/libwps_qelapsed_scale.so|/usr/lib/wps-fps-unlock/libwps_qelapsed_scale.so|' bin/wpp-fps-unlock
+}
+
+build() {
+    make -C "$srcdir/wps-fps-unlock"
+}
+
+check() {
+    make -C "$srcdir/wps-fps-unlock" verify
+}
+
+package() {
+    cd "$srcdir/wps-fps-unlock"
+    install -Dm755 build/libwps_qelapsed_scale.so "$pkgdir/usr/lib/wps-fps-unlock/libwps_qelapsed_scale.so"
+    install -Dm755 bin/wpp-fps-unlock "$pkgdir/usr/bin/wpp-fps-unlock"
+    install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+}

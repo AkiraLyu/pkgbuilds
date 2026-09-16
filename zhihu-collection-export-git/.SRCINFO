@@ -1,0 +1,20 @@
+pkgbase = zhihu-collection-export-git
+	pkgdesc = Export Zhihu collections to Markdown
+	pkgver = 0.1.0.r6.g12bf701
+	pkgrel = 2
+	url = https://github.com/AkiraLyu/zhihu-collection-export
+	arch = x86_64
+	license = LicenseRef-unknown
+	makedepends = cargo
+	makedepends = git
+	depends = glibc
+	depends = gcc-libs
+	depends = dbus
+	provides = zhihu-collection-export
+	conflicts = zhihu-collection-export
+	options = !lto
+	options = !debug
+	source = git+https://github.com/AkiraLyu/zhihu-collection-export.git
+	sha256sums = SKIP
+
+pkgname = zhihu-collection-export-git

@@ -1,0 +1,21 @@
+pkgbase = wps-fps-unlock-git
+	pkgdesc = WPS presentation frame-rate unlock experiment
+	pkgver = r3.g9ab7334
+	pkgrel = 1
+	url = https://github.com/AkiraLyu/wps-fps-unlock
+	arch = x86_64
+	license = GPL-3.0-only
+	makedepends = git
+	depends = bash
+	depends = glibc
+	depends = libfaketime
+	depends = binutils
+	depends = gawk
+	depends = wps-office-cn
+	provides = wps-fps-unlock
+	conflicts = wps-fps-unlock
+	options = !debug
+	source = git+https://github.com/AkiraLyu/wps-fps-unlock.git
+	sha256sums = SKIP
+
+pkgname = wps-fps-unlock-git

@@ -1,0 +1,38 @@
+# Maintainer: Akira <akira.uestc@gmail.com>
+pkgname=zhihu-collection-export-git
+pkgver=0.1.0.r6.g12bf701
+pkgrel=2
+pkgdesc='Export Zhihu collections to Markdown'
+arch=('x86_64')
+url='https://github.com/AkiraLyu/zhihu-collection-export'
+license=('LicenseRef-unknown')
+depends=(glibc gcc-libs dbus)
+makedepends=(cargo git)
+provides=(zhihu-collection-export)
+conflicts=(zhihu-collection-export)
+options=('!lto' '!debug')
+source=("git+$url.git")
+sha256sums=('SKIP')
+
+pkgver() {
+    cd "$srcdir/zhihu-collection-export"
+    printf '0.1.0.r%s.g%s' "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
+}
+
+build() {
+    cd "$srcdir/zhihu-collection-export"
+    export RUSTFLAGS="${RUSTFLAGS:-} --cfg=rustix_use_libc"
+    cargo build --release --locked
+}
+
+check() {
+    cd "$srcdir/zhihu-collection-export"
+    export RUSTFLAGS="${RUSTFLAGS:-} --cfg=rustix_use_libc"
+    cargo test --release --locked
+}
+
+package() {
+    cd "$srcdir/zhihu-collection-export"
+    install -Dm755 target/release/zhihu-collection-export "$pkgdir/usr/bin/zhihu-collection-export"
+    install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+}

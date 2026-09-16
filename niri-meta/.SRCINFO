@@ -1,0 +1,15 @@
+pkgbase = niri-meta
+	pkgdesc = Meta package for the Niri desktop and Noctalia shell
+	pkgver = 1.0
+	pkgrel = 2
+	arch = any
+	license = custom:none
+	depends = niri
+	depends = xwayland-satellite
+	depends = network-manager-applet
+	depends = rofi
+	depends = noctalia-qs
+	depends = noctalia-shell
+	depends = gpu-screen-recorder
+
+pkgname = niri-meta

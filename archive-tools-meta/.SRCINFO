@@ -1,0 +1,22 @@
+pkgbase = archive-tools-meta
+	pkgdesc = Meta package for common archive and compression tools
+	pkgver = 1.0
+	pkgrel = 2
+	arch = any
+	license = custom:none
+	depends = ark
+	depends = 7zip
+	depends = zip
+	depends = unzip
+	depends = unrar
+	depends = lrzip
+	depends = lzip
+	depends = xz
+	depends = bzip2
+	depends = gzip
+	depends = tar
+	options = !debug
+	source = README
+	sha256sums = 312bb81005dad171e7ff183b5e887efcea2458697d729cf1b2409a8341029476
+
+pkgname = archive-tools-meta

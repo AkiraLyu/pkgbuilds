@@ -1,12 +1,14 @@
-# Maintainer: Akira <akira.uestc at gmail.com>
-
+# 根据本机已安装元包的依赖和原始说明保存；不包含程序二进制。
 pkgname=texlive-meta-full
 pkgver=1
-pkgrel=2
-pkgdesc="Meta package that depends on all texlive packages"
+pkgrel=3
+pkgdesc='Meta package that depends on all texlive packages'
 arch=('any')
 license=('custom:none')
+# 元包只有说明文件，无需生成调试包。
+options=('!debug')
 
+# 修改软件组合时，直接增删下面的包名。
 depends=(
     texlive-basic
     texlive-bibtexextra
@@ -33,8 +35,9 @@ depends=(
     texlive-langchinese
 )
 
-package() {
-    mkdir -p "$pkgdir/usr/share/doc/$pkgname"
-    echo "Meta package for full texlive" > "$pkgdir/usr/share/doc/$pkgname/README"
-}
+source=('README')
+sha256sums=('fbf8e338383a022b1cf45022fef0aebacbab1052e531df5c3e7e66e617c59426')
 
+package() {
+    install -Dm644 "$srcdir/README" "$pkgdir/usr/share/doc/$pkgname/README"
+}

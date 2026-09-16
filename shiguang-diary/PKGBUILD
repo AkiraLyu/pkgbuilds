@@ -1,0 +1,56 @@
+# Maintainer: 拾光日记
+
+pkgname=shiguang-diary
+pkgver=1.0.0
+pkgrel=5
+pkgdesc='本地优先的 Markdown 日记查看、编辑与文本洞察应用'
+arch=('x86_64')
+license=('custom')
+depends=('electron>=43' 'xdg-desktop-portal' 'glibc')
+makedepends=('wayland' 'nodejs>=24' 'npm')
+options=('!strip' '!debug')
+
+# The application source is maintained in the dotfiles GitHub repository.
+url='https://github.com/AkiraLyu/dotfiles'
+_commit=8883598e6471d90ce710e6152ddfb57092c19959
+source=("dotfiles-$_commit.tar.gz::$url/archive/$_commit.tar.gz")
+noextract=("dotfiles-$_commit.tar.gz")
+sha256sums=('dafdb21eb6b771e1f69de0ec8644f803511cc63d046ebb4db7f0f5c29a8f1169')
+prepare() {
+  # Keep native Unix socket paths below sockaddr_un.sun_path's length limit.
+  mkdir -p "$srcdir/diary"
+  bsdtar -xf "$srcdir/dotfiles-$_commit.tar.gz" -C "$srcdir/diary" \
+    --strip-components=5 "dotfiles-$_commit/local/.local/src/diary"
+}
+
+build() {
+  sh "$srcdir/diary/native/linux-wayland-blur/build.sh" \
+    "$srcdir/native-wayland-blur"
+}
+
+check() {
+  cd "$srcdir/diary"
+  npm test
+}
+
+package() {
+  local app_root="$pkgdir/usr/lib/$pkgname"
+
+  install -d "$app_root/electron" "$app_root/public"
+  cp -R "$srcdir/diary/electron/." "$app_root/electron/"
+  cp -R "$srcdir/diary/public/." "$app_root/public/"
+  install -Dm644 "$srcdir/diary/package.json" "$app_root/package.json"
+  install -Dm755 "$srcdir/native-wayland-blur/libshiguang-wayland-blur.so" \
+    "$app_root/libshiguang-wayland-blur.so"
+
+  install -Dm755 "$srcdir/diary/packaging/shiguang-diary" \
+    "$pkgdir/usr/bin/shiguang-diary"
+  install -Dm644 "$srcdir/diary/packaging/dev.local.shiguang.diary.desktop" \
+    "$pkgdir/usr/share/applications/dev.local.shiguang.diary.desktop"
+  install -Dm644 "$srcdir/diary/build/icon.png" \
+    "$pkgdir/usr/share/icons/hicolor/512x512/apps/dev.local.shiguang.diary.png"
+  install -Dm644 "$srcdir/diary/README.md" \
+    "$pkgdir/usr/share/doc/$pkgname/README.md"
+  install -Dm644 "$srcdir/diary/native/linux-wayland-blur/LICENSE.open-orpheus" \
+    "$pkgdir/usr/share/licenses/$pkgname/LICENSE.open-orpheus"
+}

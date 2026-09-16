@@ -1,11 +1,14 @@
-# Maintainer: Akira <akira@example.com>
+# 根据本机已安装元包的依赖和原始说明保存；不包含程序二进制。
 pkgname=wine-meta
 pkgver=11.0
-pkgrel=1
-pkgdesc="Meta package for wine and related addons"
+pkgrel=3
+pkgdesc='Meta package for wine and related addons'
 arch=('any')
 license=('custom:none')
+# 元包只有说明文件，无需生成调试包。
+options=('!debug')
 
+# 修改软件组合时，直接增删下面的包名。
 depends=(
     wine
     wine-gecko
@@ -13,8 +16,9 @@ depends=(
     winetricks
 )
 
-package() {
-    mkdir -p "$pkgdir/usr/share/doc/$pkgname"
-    echo "Meta package for fcitx5 and related addons" > "$pkgdir/usr/share/doc/$pkgname/README"
-}
+source=('README')
+sha256sums=('a7ac9ec8e40fd677141ad9fe55299fac7f486cb434c90fef602eef091f100806')
 
+package() {
+    install -Dm644 "$srcdir/README" "$pkgdir/usr/share/doc/$pkgname/README"
+}

@@ -1,0 +1,20 @@
+pkgbase = shiguang-diary
+	pkgdesc = 本地优先的 Markdown 日记查看、编辑与文本洞察应用
+	pkgver = 1.0.0
+	pkgrel = 5
+	url = https://github.com/AkiraLyu/dotfiles
+	arch = x86_64
+	license = custom
+	makedepends = wayland
+	makedepends = nodejs>=24
+	makedepends = npm
+	depends = electron>=43
+	depends = xdg-desktop-portal
+	depends = glibc
+	noextract = dotfiles-8883598e6471d90ce710e6152ddfb57092c19959.tar.gz
+	options = !strip
+	options = !debug
+	source = dotfiles-8883598e6471d90ce710e6152ddfb57092c19959.tar.gz::https://github.com/AkiraLyu/dotfiles/archive/8883598e6471d90ce710e6152ddfb57092c19959.tar.gz
+	sha256sums = dafdb21eb6b771e1f69de0ec8644f803511cc63d046ebb4db7f0f5c29a8f1169
+
+pkgname = shiguang-diary

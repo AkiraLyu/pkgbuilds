@@ -1,0 +1,28 @@
+# Maintainer: Akira <akira.uestc@gmail.com>
+pkgname=appgrid
+pkgver=0.3.0
+pkgrel=1
+pkgdesc='Full-screen application grid for KDE Plasma 6'
+arch=('x86_64')
+url='https://github.com/AkiraLyu/kde-plugins'
+license=('GPL-2.0-or-later')
+depends=(plasma-desktop qt6-declarative qt6-wayland kconfig kwindowsystem wayland)
+makedepends=(git cmake ninja)
+options=('!debug' '!lto')
+_commit=ae504529368004bd468973627fc5fa1f6e6089bb
+source=("kde-plugins::git+$url.git#commit=$_commit")
+sha256sums=('SKIP')
+
+build() {
+    cmake -S "$srcdir/kde-plugins/appgrid" -B "$srcdir/build" -G Ninja \
+        -DCMAKE_BUILD_TYPE=None -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=lib -DBUILD_TESTING=ON
+    cmake --build "$srcdir/build" --parallel 2
+}
+
+package() {
+    DESTDIR="$pkgdir" cmake --install "$srcdir/build"
+}
+
+check() {
+    ctest --test-dir "$srcdir/build" --output-on-failure
+}

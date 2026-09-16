@@ -1,0 +1,18 @@
+pkgbase = fcitx5-meta
+	pkgdesc = Meta package for fcitx5 and related addons
+	pkgver = 6.0
+	pkgrel = 2
+	arch = any
+	license = custom:none
+	depends = fcitx5
+	depends = fcitx5-chinese-addons
+	depends = fcitx5-configtool
+	depends = fcitx5-gtk
+	depends = fcitx5-material-color
+	depends = fcitx5-qt
+	depends = fcitx5-pinyin-zhwiki
+	options = !debug
+	source = README
+	sha256sums = e97fe23705f447037af7d3c1c8b72c6b0a1cf20ebbe6517ac73477016874d55a
+
+pkgname = fcitx5-meta

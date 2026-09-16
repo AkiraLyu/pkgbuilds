@@ -1,0 +1,30 @@
+pkgbase = kde-config
+	pkgdesc = Personal KDE appearance settings and theme controls
+	pkgver = 1.0.0
+	pkgrel = 5
+	url = https://github.com/AkiraLyu/kde-plugins
+	arch = any
+	license = LicenseRef-unknown
+	makedepends = git
+	depends = appgrid
+	depends = adjustable-task-manager
+	depends = kate-translucent-bars
+	depends = wechat-glass-live
+	depends = darkly-translucent
+	depends = darkly-bin
+	depends = plasma6-themes-layan-git
+	depends = kwin-effect-rounded-corners-git
+	depends = kwin-effects-better-blur-dx
+	depends = kconfig
+	depends = qt6-tools
+	depends = glib2
+	depends = bash
+	depends = systemd
+	optdepends = chatgpt-translucent-bars: patch the AUR ChatGPT application
+	optdepends = flatpak: configure the WeChat XWayland backend
+	options = !debug
+	options = !lto
+	source = kde-plugins::git+https://github.com/AkiraLyu/kde-plugins.git#commit=ae504529368004bd468973627fc5fa1f6e6089bb
+	sha256sums = SKIP
+
+pkgname = kde-config

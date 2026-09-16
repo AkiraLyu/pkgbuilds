@@ -1,0 +1,19 @@
+# Maintainer: Akira <akira.uestc@gmail.com>
+pkgname=darkly-translucent
+pkgver=0.5.39
+pkgrel=1
+pkgdesc='Darkly Plasma theme with translucent backgrounds'
+arch=('any')
+url='https://github.com/AkiraLyu/kde-plugins'
+license=('GPL-2.0-only')
+depends=(plasma-workspace)
+makedepends=(git )
+options=('!debug' '!lto')
+_commit=ae504529368004bd468973627fc5fa1f6e6089bb
+source=("kde-plugins::git+$url.git#commit=$_commit")
+sha256sums=('SKIP')
+
+package() {
+    install -d "$pkgdir/usr/share/plasma/desktoptheme/darkly-translucent"
+    cp -r "$srcdir/kde-plugins/darkly-translucent/." "$pkgdir/usr/share/plasma/desktoptheme/darkly-translucent/"
+}

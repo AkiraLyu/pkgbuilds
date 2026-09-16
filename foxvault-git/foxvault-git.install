@@ -13,7 +13,7 @@ Run once whenever the user systemd manager starts:
   systemctl --user enable foxvault.service
 
 Run at boot before login:
-  sudo loginctl enable-linger "$USER"
+  run0 loginctl enable-linger "$USER"
 EOF
 }
 

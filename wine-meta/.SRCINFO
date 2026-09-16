@@ -1,0 +1,15 @@
+pkgbase = wine-meta
+	pkgdesc = Meta package for wine and related addons
+	pkgver = 11.0
+	pkgrel = 3
+	arch = any
+	license = custom:none
+	depends = wine
+	depends = wine-gecko
+	depends = wine-mono
+	depends = winetricks
+	options = !debug
+	source = README
+	sha256sums = a7ac9ec8e40fd677141ad9fe55299fac7f486cb434c90fef602eef091f100806
+
+pkgname = wine-meta

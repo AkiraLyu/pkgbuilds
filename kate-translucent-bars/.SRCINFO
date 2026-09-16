@@ -1,0 +1,23 @@
+pkgbase = kate-translucent-bars
+	pkgdesc = Translucent Kate toolbars and sidebars
+	pkgver = 1.2.0
+	pkgrel = 1
+	url = https://github.com/AkiraLyu/kde-plugins
+	arch = x86_64
+	license = GPL-2.0-or-later
+	makedepends = git
+	makedepends = cmake
+	makedepends = ninja
+	depends = kate
+	depends = qt6-base
+	depends = kcoreaddons
+	depends = ktexteditor
+	depends = kwidgetsaddons
+	depends = kconfig
+	depends = bash
+	options = !debug
+	options = !lto
+	source = kde-plugins::git+https://github.com/AkiraLyu/kde-plugins.git#commit=ae504529368004bd468973627fc5fa1f6e6089bb
+	sha256sums = SKIP
+
+pkgname = kate-translucent-bars

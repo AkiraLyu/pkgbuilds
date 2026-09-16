@@ -1,0 +1,16 @@
+pkgbase = chatgpt-translucent-bars
+	pkgdesc = Translucent ChatGPT sidebar and titlebar patch for KDE
+	pkgver = 1.0.0
+	pkgrel = 1
+	url = https://github.com/AkiraLyu/kde-plugins
+	arch = any
+	license = LicenseRef-unknown
+	makedepends = git
+	depends = chatgpt-desktop
+	depends = python
+	optdepends = kde-config: configure KWin blur for ChatGPT
+	options = !debug
+	source = kde-plugins::git+https://github.com/AkiraLyu/kde-plugins.git#commit=ae504529368004bd468973627fc5fa1f6e6089bb
+	sha256sums = SKIP
+
+pkgname = chatgpt-translucent-bars
