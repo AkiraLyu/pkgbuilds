@@ -30,7 +30,7 @@ WeChat Glass and the Darkly translucent Plasma theme. `chatgpt-desktop` remains 
 through a pacman hook after application updates. Rebuild `wechat-glass-live` after KWin ABI changes and log in again.
 
 Other personal packages include `wps-fps-unlock-git`, `zhihu-collection-export-git`,
-`gamescope-git` (the Anime4K fork), `shiguang-diary` and `foxvault-git`.
+`gamescope-git` (the Anime4K fork)  and `foxvault-git`.
 The diary source remains in the dotfiles repository and is fetched from GitHub.
 The archive, Fcitx5, TeX Live and Wine meta packages are maintained only here.
 
