@@ -1,7 +1,7 @@
 # Maintainer: Akira <akira.uestc@gmail.com>
 pkgname=kde-config
 pkgver=1.0.0
-pkgrel=5
+pkgrel=6
 pkgdesc='Personal KDE appearance settings and theme controls'
 arch=('any')
 url='https://github.com/AkiraLyu/kde-plugins'
@@ -9,7 +9,7 @@ license=('LicenseRef-unknown')
 depends=(appgrid adjustable-task-manager kate-translucent-bars wechat-glass-live darkly-translucent darkly-bin plasma6-themes-layan-git kwin-effect-rounded-corners-git kwin-effects-better-blur-dx kconfig qt6-tools glib2 bash systemd)
 makedepends=(git)
 options=('!debug' '!lto')
-_commit=ae504529368004bd468973627fc5fa1f6e6089bb
+_commit=785930a059e228a0f368785e395c33ae13c81747
 source=("kde-plugins::git+$url.git#commit=$_commit")
 sha256sums=('SKIP')
 
@@ -20,7 +20,7 @@ package() {
     cd "$srcdir/kde-plugins/kde-config"
     install -Dm755 apply-config "$pkgdir/usr/bin/kde-config"
     install -Dm755 darkly-theme "$pkgdir/usr/bin/darkly-theme"
-    for file in kwinrc darklyrc org.kde.kate.desktop; do
+    for file in kwinrc darklyrc kdeglobals org.kde.kate.desktop; do
         install -Dm644 "$file" "$pkgdir/usr/share/kde-config/$file"
     done
     install -Dm644 theme-toggle.desktop "$pkgdir/usr/share/applications/theme-toggle.desktop"
