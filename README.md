@@ -31,7 +31,16 @@ through a pacman hook after application updates. Rebuild `wechat-glass-live` aft
 
 Other personal packages include `wps-fps-unlock-git`, `zhihu-collection-export-git`,
 `gamescope-git` (the Anime4K fork)  and `foxvault-git`.
-The diary source remains in the dotfiles repository and is fetched from GitHub.
+`shiguang-diary` is built from a pinned commit of
+[AkiraLyu/shiguang-diary](https://github.com/AkiraLyu/shiguang-diary). It uses system
+Electron and includes the Wayland blur library, desktop launcher and application
+documentation. Its build runs the upstream tests without installing npm dependencies.
+
+```sh
+paru --sudo run0 -S shiguang-diary
+shiguang-diary
+```
+
 The archive, Fcitx5, TeX Live and Wine meta packages are maintained only here.
 
 After editing a recipe, regenerate its `.SRCINFO` with `makepkg --printsrcinfo`.

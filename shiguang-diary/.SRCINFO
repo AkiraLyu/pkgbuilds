@@ -1,0 +1,23 @@
+pkgbase = shiguang-diary
+	pkgdesc = Local Markdown diary editor with timelines, maps and text insights
+	pkgver = 1.0.0
+	pkgrel = 1
+	url = https://github.com/AkiraLyu/shiguang-diary
+	arch = x86_64
+	license = LicenseRef-unknown
+	license = MIT
+	license = OFL-1.1
+	checkdepends = nodejs>=24
+	checkdepends = npm
+	checkdepends = desktop-file-utils
+	makedepends = git
+	makedepends = wayland
+	depends = electron>=43
+	depends = hicolor-icon-theme
+	depends = xdg-desktop-portal
+	options = !strip
+	options = !debug
+	source = shiguang-diary::git+https://github.com/AkiraLyu/shiguang-diary.git#commit=f83451659c23b52c7e668ca271cfef3f6af08b77
+	sha256sums = SKIP
+
+pkgname = shiguang-diary

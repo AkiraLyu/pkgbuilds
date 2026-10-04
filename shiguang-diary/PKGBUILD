@@ -1,0 +1,53 @@
+# Maintainer: Akira <akira.lyu.cn@gmail.com>
+pkgname=shiguang-diary
+pkgver=1.0.0
+pkgrel=1
+pkgdesc='Local Markdown diary editor with timelines, maps and text insights'
+arch=('x86_64')
+url='https://github.com/AkiraLyu/shiguang-diary'
+license=('LicenseRef-unknown' 'MIT' 'OFL-1.1')
+depends=('electron>=43' 'hicolor-icon-theme' 'xdg-desktop-portal')
+makedepends=('git' 'wayland')
+checkdepends=('nodejs>=24' 'npm' 'desktop-file-utils')
+options=('!strip' '!debug')
+_commit=f83451659c23b52c7e668ca271cfef3f6af08b77
+source=("$pkgname::git+$url.git#commit=$_commit")
+sha256sums=('SKIP')
+
+build() {
+    cd "$srcdir/$pkgname"
+    sh native/linux-wayland-blur/build.sh "$srcdir/native-wayland-blur"
+}
+
+check() {
+    cd "$srcdir/$pkgname"
+    npm test
+    desktop-file-validate packaging/dev.local.shiguang.diary.desktop
+}
+
+package() {
+    cd "$srcdir/$pkgname"
+    local app_root="$pkgdir/usr/lib/$pkgname"
+
+    install -d "$app_root/electron" "$app_root/public"
+    cp -R electron/. "$app_root/electron/"
+    cp -R public/. "$app_root/public/"
+    install -Dm644 package.json "$app_root/package.json"
+    install -Dm755 "$srcdir/native-wayland-blur/libshiguang-wayland-blur.so" \
+        "$app_root/libshiguang-wayland-blur.so"
+
+    install -Dm755 packaging/shiguang-diary "$pkgdir/usr/bin/shiguang-diary"
+    install -Dm644 packaging/dev.local.shiguang.diary.desktop \
+        "$pkgdir/usr/share/applications/dev.local.shiguang.diary.desktop"
+    install -Dm644 build/icon.png \
+        "$pkgdir/usr/share/icons/hicolor/512x512/apps/dev.local.shiguang.diary.png"
+
+    install -d "$pkgdir/usr/share/doc/$pkgname"
+    cp -R README.md docs "$pkgdir/usr/share/doc/$pkgname/"
+    install -Dm644 native/linux-wayland-blur/LICENSE.open-orpheus \
+        "$pkgdir/usr/share/licenses/$pkgname/LICENSE.open-orpheus"
+    install -Dm644 public/vendor/katex/LICENSE \
+        "$pkgdir/usr/share/licenses/$pkgname/LICENSE.katex"
+    install -Dm644 public/fonts/LICENSE.txt \
+        "$pkgdir/usr/share/licenses/$pkgname/LICENSE.fonts"
+}
