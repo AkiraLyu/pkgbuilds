@@ -24,7 +24,7 @@ pkgbase = kde-config
 	optdepends = flatpak: configure the WeChat XWayland backend
 	options = !debug
 	options = !lto
-	source = kde-plugins::git+https://github.com/AkiraLyu/kde-plugins.git#commit=785930a059e228a0f368785e395c33ae13c81747
+	source = kde-plugins::git+https://github.com/AkiraLyu/kde-plugins.git#commit=e5c28f8d37921e709d7149424b917a1748d40a6e
 	sha256sums = SKIP
 
 pkgname = kde-config

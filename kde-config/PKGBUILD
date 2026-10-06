@@ -9,7 +9,7 @@ license=('LicenseRef-unknown')
 depends=(appgrid adjustable-task-manager kate-translucent-bars wechat-glass-live darkly-translucent darkly-bin plasma6-themes-layan-git kwin-effect-rounded-corners-git kwin-effects-better-blur-dx kconfig qt6-tools glib2 bash systemd)
 makedepends=(git)
 options=('!debug' '!lto')
-_commit=785930a059e228a0f368785e395c33ae13c81747
+_commit=e5c28f8d37921e709d7149424b917a1748d40a6e
 source=("kde-plugins::git+$url.git#commit=$_commit")
 sha256sums=('SKIP')
 
