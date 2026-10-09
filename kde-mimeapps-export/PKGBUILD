@@ -1,0 +1,24 @@
+# Maintainer: Akira <akira.lyu.cn@gmail.com>
+pkgname=kde-mimeapps-export
+pkgver=0.1.0
+pkgrel=1
+pkgdesc='Export effective KDE file associations to mimeapps.list'
+arch=('x86_64')
+url='https://github.com/AkiraLyu/kde-mimeapps-export'
+license=('LicenseRef-unknown')
+depends=('glibc' 'libstdc++' 'kconfig>=6.23' 'kservice' 'qt6-base')
+makedepends=('cmake' 'git' 'ninja')
+options=('!debug')
+_commit=7e00e9c72d70a94bf7ddbb62104d638420e8b037
+source=("$pkgname::git+$url.git#commit=$_commit")
+sha256sums=('SKIP')
+
+build() {
+    cmake -S "$srcdir/$pkgname" -B "$srcdir/build" -G Ninja \
+        -DCMAKE_BUILD_TYPE=None -DCMAKE_INSTALL_PREFIX=/usr
+    cmake --build "$srcdir/build"
+}
+
+package() {
+    DESTDIR="$pkgdir" cmake --install "$srcdir/build"
+}

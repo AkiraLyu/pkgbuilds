@@ -41,6 +41,15 @@ paru --sudo run0 -S shiguang-diary
 shiguang-diary
 ```
 
+`kde-mimeapps-export` exports effective KDE file associations for other desktops.
+It is built from a pinned commit of
+[AkiraLyu/kde-mimeapps-export](https://github.com/AkiraLyu/kde-mimeapps-export).
+
+```sh
+paru --sudo run0 -S kde-mimeapps-export
+kde-mimeapps-export --dry-run
+```
+
 The archive, Fcitx5, TeX Live and Wine meta packages are maintained only here.
 
 After editing a recipe, regenerate its `.SRCINFO` with `makepkg --printsrcinfo`.
