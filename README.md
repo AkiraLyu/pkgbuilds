@@ -31,6 +31,18 @@ through a pacman hook after application updates. Rebuild `wechat-glass-live` aft
 
 Other personal packages include `wps-fps-unlock-git`, `zhihu-collection-export-git`,
 `gamescope-git` (the Anime4K fork)  and `foxvault-git`.
+
+`niri-akira-git` builds the `feat/popup-shadows` branch of
+[AkiraLyu/niri](https://github.com/AkiraLyu/niri/tree/feat/popup-shadows).
+It provides `niri` and conflicts with other niri packages. The recipe uses
+size-oriented Rust optimization, full LTO, stripped symbols, and XZ compression.
+Panics terminate the process without stack unwinding. Default compositor features
+and session files are included.
+
+```sh
+paru --sudo run0 -S niri-akira-git
+```
+
 `shiguang-diary` is built from a pinned commit of
 [AkiraLyu/shiguang-diary](https://github.com/AkiraLyu/shiguang-diary). It uses system
 Electron and includes the Wayland blur library, desktop launcher and application
