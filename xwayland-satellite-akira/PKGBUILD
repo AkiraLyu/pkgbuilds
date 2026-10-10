@@ -28,8 +28,13 @@ source=(git+$url.git)
 b2sums=('SKIP')
 
 pkgver() {
-	cd $_pkgname
-	git describe --long --abbrev=7 | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+	cd "$srcdir/$_pkgname" || return 1
+	local version count commit
+	version=$(awk -F '"' '/^version = / { print $2; exit }' Cargo.toml) || return 1
+	[[ -n $version ]] || return 1
+	count=$(git rev-list --count HEAD) || return 1
+	commit=$(git rev-parse --short=7 HEAD) || return 1
+	printf '%s.r%s.g%s\n' "$version" "$count" "$commit"
 }
 
 prepare() {
