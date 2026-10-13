@@ -1,7 +1,7 @@
 # Maintainer: Akira <akira.uestc@gmail.com>
 pkgname=kde-config
 pkgver=1.0.0
-pkgrel=6
+pkgrel=7
 pkgdesc='Personal KDE appearance settings and theme controls'
 arch=('any')
 url='https://github.com/AkiraLyu/kde-plugins'
@@ -9,7 +9,7 @@ license=('LicenseRef-unknown')
 depends=(appgrid adjustable-task-manager kate-translucent-bars wechat-glass-live darkly-translucent darkly-bin plasma6-themes-layan-git kwin-effect-rounded-corners-git kwin-effects-better-blur-dx kconfig qt6-tools glib2 bash systemd)
 makedepends=(git)
 options=('!debug' '!lto')
-_commit=e5c28f8d37921e709d7149424b917a1748d40a6e
+_commit=148011d70320eeda104483007f2c88b562e92b5a
 source=("kde-plugins::git+$url.git#commit=$_commit")
 sha256sums=('SKIP')
 

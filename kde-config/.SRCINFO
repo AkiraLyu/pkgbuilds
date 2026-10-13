@@ -1,7 +1,7 @@
 pkgbase = kde-config
 	pkgdesc = Personal KDE appearance settings and theme controls
 	pkgver = 1.0.0
-	pkgrel = 6
+	pkgrel = 7
 	url = https://github.com/AkiraLyu/kde-plugins
 	arch = any
 	license = LicenseRef-unknown
@@ -24,7 +24,7 @@ pkgbase = kde-config
 	optdepends = flatpak: configure the WeChat XWayland backend
 	options = !debug
 	options = !lto
-	source = kde-plugins::git+https://github.com/AkiraLyu/kde-plugins.git#commit=e5c28f8d37921e709d7149424b917a1748d40a6e
+	source = kde-plugins::git+https://github.com/AkiraLyu/kde-plugins.git#commit=148011d70320eeda104483007f2c88b562e92b5a
 	sha256sums = SKIP
 
 pkgname = kde-config
