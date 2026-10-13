@@ -1,7 +1,7 @@
 # Personal Arch Linux packages
 
 Each package directory contains its PKGBUILD, required support files and `.SRCINFO`.
-KDE sources and patches live in [AkiraLyu/kde-plugins](https://github.com/AkiraLyu/kde-plugins).
+KDE plugins, themes and settings live in [AkiraLyu/kde-plugins](https://github.com/AkiraLyu/kde-plugins).
 Third-party packages continue to use their AUR maintainers.
 
 Configure `~/.config/paru/paru.conf`:
@@ -21,13 +21,13 @@ Url = https://github.com/AkiraLyu/pkgbuilds.git
 
 ```sh
 paru --sudo run0 -Sy --pkgbuilds
-paru --sudo run0 -S kde-config chatgpt-translucent-bars
+paru --sudo run0 -S kde-config
 kde-config
 ```
 
 `kde-config` pulls in App Grid, Adjustable Task Manager, Kate translucent bars,
-WeChat Glass and the Darkly translucent Plasma theme. `chatgpt-desktop` remains in AUR; `chatgpt-translucent-bars` applies the patch
-through a pacman hook after application updates. Rebuild `wechat-glass-live` after KWin ABI changes and log in again.
+WeChat Glass and the Darkly translucent Plasma theme. Rebuild `wechat-glass-live`
+after KWin ABI changes and log in again.
 
 Other personal packages include `wps-fps-unlock-git`, `zhihu-collection-export-git`,
 `gamescope-git` (the Anime4K fork)  and `foxvault-git`.

@@ -1,6 +1,6 @@
 # Maintainer: Akira <akira.uestc@gmail.com>
 pkgname=darkly-translucent
-pkgver=0.5.39
+pkgver=0.5.41
 pkgrel=1
 pkgdesc='Darkly Plasma theme with translucent backgrounds'
 arch=('any')
@@ -9,7 +9,7 @@ license=('GPL-2.0-only')
 depends=(plasma-workspace)
 makedepends=(git )
 options=('!debug' '!lto')
-_commit=ae504529368004bd468973627fc5fa1f6e6089bb
+_commit=148011d70320eeda104483007f2c88b562e92b5a
 source=("kde-plugins::git+$url.git#commit=$_commit")
 sha256sums=('SKIP')
 

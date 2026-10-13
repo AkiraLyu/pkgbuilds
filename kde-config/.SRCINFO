@@ -1,7 +1,7 @@
 pkgbase = kde-config
 	pkgdesc = Personal KDE appearance settings and theme controls
 	pkgver = 1.0.0
-	pkgrel = 6
+	pkgrel = 8
 	url = https://github.com/AkiraLyu/kde-plugins
 	arch = any
 	license = LicenseRef-unknown
@@ -20,11 +20,10 @@ pkgbase = kde-config
 	depends = glib2
 	depends = bash
 	depends = systemd
-	optdepends = chatgpt-translucent-bars: patch the AUR ChatGPT application
 	optdepends = flatpak: configure the WeChat XWayland backend
 	options = !debug
 	options = !lto
-	source = kde-plugins::git+https://github.com/AkiraLyu/kde-plugins.git#commit=e5c28f8d37921e709d7149424b917a1748d40a6e
+	source = kde-plugins::git+https://github.com/AkiraLyu/kde-plugins.git#commit=a9f1c5733cafb7e5f07ea9e87fc9fa1ac735fa08
 	sha256sums = SKIP
 
 pkgname = kde-config
