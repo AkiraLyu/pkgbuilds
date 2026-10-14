@@ -1,0 +1,17 @@
+pkgbase = noto-sans-akira
+	pkgdesc = Sans-serif UI fonts with Noto Sans CJK SC Latin glyphs and proportional punctuation
+	pkgver = 1.0.0
+	pkgrel = 1
+	url = https://github.com/AkiraLyu/noto-sans
+	arch = any
+	license = OFL-1.1
+	makedepends = git
+	depends = fontconfig
+	depends = noto-fonts
+	depends = noto-fonts-cjk
+	depends = noto-fonts-emoji
+	options = !debug
+	source = noto-sans::git+https://github.com/AkiraLyu/noto-sans.git#commit=55230620edd29f42ba1d6101a3d850c8321df4bb
+	sha256sums = SKIP
+
+pkgname = noto-sans-akira

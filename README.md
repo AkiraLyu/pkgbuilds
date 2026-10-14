@@ -62,6 +62,25 @@ paru --sudo run0 -S kde-mimeapps-export
 kde-mimeapps-export --dry-run
 ```
 
+`noto-sans-akira` installs six desktop font weights from a pinned commit of
+[AkiraLyu/noto-sans](https://github.com/AkiraLyu/noto-sans). The family preserves
+Noto Sans CJK SC Latin glyphs and provides proportional Western punctuation.
+The optional DemiLight face is stored outside the font search path. The package
+provides an optional Fontconfig configuration without enabling it automatically.
+
+```sh
+paru --sudo run0 -S noto-sans-akira
+```
+
+To prefer this family for `sans-serif` and `system-ui`, enable the configuration
+for your user and restart browsers:
+
+```sh
+mkdir -p "$HOME/.config/fontconfig/conf.d"
+ln -s /usr/share/fontconfig/conf.avail/61-noto-sans-akira.conf \
+  "$HOME/.config/fontconfig/conf.d/61-noto-sans-akira.conf"
+```
+
 The archive, Fcitx5, TeX Live and Wine meta packages are maintained only here.
 
 After editing a recipe, regenerate its `.SRCINFO` with `makepkg --printsrcinfo`.

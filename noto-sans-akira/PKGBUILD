@@ -1,0 +1,28 @@
+# Maintainer: Akira <akira.lyu.cn@gmail.com>
+pkgname=noto-sans-akira
+pkgver=1.0.0
+pkgrel=1
+pkgdesc='Sans-serif UI fonts with Noto Sans CJK SC Latin glyphs and proportional punctuation'
+arch=('any')
+url='https://github.com/AkiraLyu/noto-sans'
+license=('OFL-1.1')
+depends=('fontconfig' 'noto-fonts' 'noto-fonts-cjk' 'noto-fonts-emoji')
+makedepends=('git')
+options=('!debug')
+_commit=55230620edd29f42ba1d6101a3d850c8321df4bb
+source=("noto-sans::git+$url.git#commit=$_commit")
+sha256sums=('SKIP')
+
+package() {
+    cd "$srcdir/noto-sans"
+
+    install -Dm644 fonts/*.otf -t "$pkgdir/usr/share/fonts/$pkgname"
+    install -Dm644 optional/NotoSansAkira-DemiLight.otf \
+        "$pkgdir/usr/share/$pkgname/optional/NotoSansAkira-DemiLight.otf"
+    install -Dm644 fontconfig/61-noto-sans-akira.conf \
+        "$pkgdir/usr/share/fontconfig/conf.avail/61-noto-sans-akira.conf"
+
+    install -Dm644 docs/LICENSE.md "$pkgdir/usr/share/licenses/$pkgname/LICENSE.md"
+    install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+    install -Dm644 docs/*.md -t "$pkgdir/usr/share/doc/$pkgname/docs"
+}
