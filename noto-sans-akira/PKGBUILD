@@ -1,7 +1,7 @@
 # Maintainer: Akira <akira.lyu.cn@gmail.com>
 pkgname=noto-sans-akira
 pkgver=1.0.0
-pkgrel=2
+pkgrel=3
 pkgdesc='Sans-serif UI fonts with Noto Sans CJK SC Latin glyphs and proportional punctuation'
 arch=('any')
 url='https://github.com/AkiraLyu/noto-sans'
@@ -9,7 +9,7 @@ license=('OFL-1.1')
 depends=('fontconfig' 'noto-fonts' 'noto-fonts-cjk' 'noto-fonts-emoji')
 makedepends=('git')
 options=('!debug')
-_commit=657c15617d86d58d85968d27db8a455f81a5cc2a
+_commit=ba12194a2355e0096eeb59cb266d921a7d437948
 source=("noto-sans::git+$url.git#commit=$_commit")
 sha256sums=('SKIP')
 

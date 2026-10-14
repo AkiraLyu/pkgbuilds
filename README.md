@@ -67,7 +67,8 @@ kde-mimeapps-export --dry-run
 Noto Sans CJK SC Latin glyphs and provides proportional Western punctuation.
 The optional DemiLight face is stored outside the font search path. The package
 enables its Fontconfig configuration by default for `sans-serif`, `system-ui`,
-and symbol fallback. Arch Linux's Fontconfig hook manages the system configuration
+and symbol fallback while preserving explicitly requested fonts and monospace
+selection. Arch Linux's Fontconfig hook manages the system configuration
 link on installation, upgrade, and removal.
 
 ```sh
