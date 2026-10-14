@@ -66,20 +66,15 @@ kde-mimeapps-export --dry-run
 [AkiraLyu/noto-sans](https://github.com/AkiraLyu/noto-sans). The family preserves
 Noto Sans CJK SC Latin glyphs and provides proportional Western punctuation.
 The optional DemiLight face is stored outside the font search path. The package
-provides an optional Fontconfig configuration without enabling it automatically.
+enables its Fontconfig configuration by default for `sans-serif`, `system-ui`,
+and symbol fallback. Arch Linux's Fontconfig hook manages the system configuration
+link on installation, upgrade, and removal.
 
 ```sh
 paru --sudo run0 -S noto-sans-akira
 ```
 
-To prefer this family for `sans-serif` and `system-ui`, enable the configuration
-for your user and restart browsers:
-
-```sh
-mkdir -p "$HOME/.config/fontconfig/conf.d"
-ln -s /usr/share/fontconfig/conf.avail/61-noto-sans-akira.conf \
-  "$HOME/.config/fontconfig/conf.d/61-noto-sans-akira.conf"
-```
+Restart browsers after installation or upgrade.
 
 The archive, Fcitx5, TeX Live and Wine meta packages are maintained only here.
 
