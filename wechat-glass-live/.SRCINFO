@@ -1,7 +1,7 @@
 pkgbase = wechat-glass-live
 	pkgdesc = KWin effect for translucent WeChat bars on XWayland and Wayland
 	pkgver = 0.6.1
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/AkiraLyu/kde-plugins
 	arch = x86_64
 	license = GPL-2.0-or-later
@@ -20,7 +20,7 @@ pkgbase = wechat-glass-live
 	depends = kwin-effects-better-blur-dx
 	options = !debug
 	options = !lto
-	source = kde-plugins::git+https://github.com/AkiraLyu/kde-plugins.git#commit=e5c28f8d37921e709d7149424b917a1748d40a6e
+	source = kde-plugins::git+https://github.com/AkiraLyu/kde-plugins.git#commit=0dc207f1abb7d7d93e1e3cbb61590352afce1a4f
 	sha256sums = SKIP
 
 pkgname = wechat-glass-live
