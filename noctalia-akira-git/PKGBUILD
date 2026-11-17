@@ -1,0 +1,101 @@
+# Maintainer: Akira <akira.uestc@gmail.com>
+# Contributor: Peter Jung <ptr1337@archlinux.org>
+# Contributor: Noctalia Team <team@noctalia.dev>
+# Based on https://gitlab.archlinux.org/archlinux/packaging/packages/noctalia.git
+
+_pkgname=noctalia
+pkgname=noctalia-akira-git
+pkgver=5.5.0.r6382.g23454b4
+pkgrel=1
+pkgdesc='A sleek, customizable desktop shell crafted for Wayland (fork with window-collision smart auto-hide)'
+arch=('x86_64' 'aarch64')
+url='https://github.com/AkiraLyu/noctalia'
+license=('MIT')
+depends=(
+  'bash'
+  'cairo'
+  'curl'
+  'fontconfig'
+  'freetype2'
+  'git'
+  'glib2'
+  'glibc'
+  'harfbuzz'
+  'hicolor-icon-theme'
+  'jemalloc'
+  'libgcc'
+  'libglvnd'
+  'libical'
+  'libjxl'
+  'libpipewire'
+  'libqalculate'
+  'librsvg'
+  'libsecret'
+  'libsndfile'
+  'libsodium'
+  'libstdc++'
+  'libwebp'
+  'libwireplumber'
+  'libxkbcommon'
+  'libxml2'
+  'md4c'
+  'pam'
+  'polkit'
+  'pango'
+  'sdbus-cpp'
+  'tomlplusplus'
+  'wayland'
+)
+optdepends=(
+  'ddcutil: monitor brightness control'
+  'power-profiles-daemon: power profile management'
+  'upower: battery and power device integration'
+)
+makedepends=(
+  'git'
+  'meson'
+  'ninja'
+  'nlohmann-json'
+  'pkgconf'
+  'stb'
+  'wayland-protocols'
+)
+provides=("${_pkgname}=${pkgver}")
+conflicts=("${_pkgname}" 'noctalia-git')
+source=("${_pkgname}::git+${url}.git#branch=feat/smart-auto-hide-window-collision")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "${srcdir}/${_pkgname}"
+  local version count commit
+  version=$(tr -d '[:space:]' < VERSION) || return 1
+  [[ -n $version ]] || return 1
+  count=$(git rev-list --count HEAD) || return 1
+  commit=$(git rev-parse --short=7 HEAD) || return 1
+  printf '%s.r%s.g%s\n' "${version//_/.}" "$count" "$commit"
+}
+
+build() {
+  CXXFLAGS+=" -Wno-unused-result"
+  arch-meson "${_pkgname}" build-release \
+    -Db_ndebug=true \
+    -Dtests=disabled
+  meson compile -C build-release
+  for shell in bash fish zsh; do
+    build-release/noctalia completions "$shell" > "${shell}-completion"
+  done
+}
+
+package() {
+  meson install -C build-release --destdir "${pkgdir}"
+
+  install -Dm644 "${_pkgname}/LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+  install -Dm644 "${_pkgname}/README.md" "${pkgdir}/usr/share/doc/${pkgname}/README.md"
+  # shell completions
+  install -vDm644 bash-completion \
+    "$pkgdir/usr/share/bash-completion/completions/noctalia"
+  install -vDm644 fish-completion \
+    "$pkgdir/usr/share/fish/vendor_completions.d/noctalia.fish"
+  install -vDm644 zsh-completion \
+    "$pkgdir/usr/share/zsh/site-functions/_noctalia"
+}
