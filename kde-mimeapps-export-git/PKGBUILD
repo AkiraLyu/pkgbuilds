@@ -1,0 +1,37 @@
+# Maintainer: Akira <akira.lyu.cn@gmail.com>
+_pkgname=kde-mimeapps-export
+pkgname=$_pkgname-git
+pkgver=0.1.0.r1.g7e00e9c
+pkgrel=1
+pkgdesc='Export effective KDE file associations to mimeapps.list'
+arch=('x86_64')
+url='https://github.com/AkiraLyu/kde-mimeapps-export'
+license=('LicenseRef-unknown')
+depends=('glibc' 'libstdc++' 'kconfig>=6.23' 'kservice' 'qt6-base')
+makedepends=('cmake' 'git' 'ninja')
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+options=('!debug')
+source=("$_pkgname::git+$url.git")
+sha256sums=('SKIP')
+
+pkgver() {
+    cd "$srcdir/$_pkgname"
+    local _ver
+    _ver=$(sed -n 's/^project(kde_mimeapps_export VERSION \([^ )]*\).*/\1/p' CMakeLists.txt)
+    if [[ -z $_ver ]]; then
+        printf 'error: cannot read the project version from CMakeLists.txt\n' >&2
+        return 1
+    fi
+    printf '%s.r%s.g%s\n' "$_ver" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
+}
+
+build() {
+    cmake -S "$srcdir/$_pkgname" -B "$srcdir/build" -G Ninja \
+        -DCMAKE_BUILD_TYPE=None -DCMAKE_INSTALL_PREFIX=/usr
+    cmake --build "$srcdir/build"
+}
+
+package() {
+    DESTDIR="$pkgdir" cmake --install "$srcdir/build"
+}

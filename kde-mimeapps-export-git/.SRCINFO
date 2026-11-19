@@ -1,6 +1,6 @@
-pkgbase = kde-mimeapps-export
+pkgbase = kde-mimeapps-export-git
 	pkgdesc = Export effective KDE file associations to mimeapps.list
-	pkgver = 0.1.0
+	pkgver = 0.1.0.r1.g7e00e9c
 	pkgrel = 1
 	url = https://github.com/AkiraLyu/kde-mimeapps-export
 	arch = x86_64
@@ -13,8 +13,10 @@ pkgbase = kde-mimeapps-export
 	depends = kconfig>=6.23
 	depends = kservice
 	depends = qt6-base
+	provides = kde-mimeapps-export
+	conflicts = kde-mimeapps-export
 	options = !debug
-	source = kde-mimeapps-export::git+https://github.com/AkiraLyu/kde-mimeapps-export.git#commit=7e00e9c72d70a94bf7ddbb62104d638420e8b037
+	source = kde-mimeapps-export::git+https://github.com/AkiraLyu/kde-mimeapps-export.git
 	sha256sums = SKIP
 
-pkgname = kde-mimeapps-export
+pkgname = kde-mimeapps-export-git

@@ -1,24 +1,31 @@
 # Maintainer: Akira <akira.lyu.cn@gmail.com>
-pkgname=noto-sans-akira
-pkgver=1.0.0
-pkgrel=3
+_pkgname=noto-sans-akira
+pkgname=$_pkgname-git
+pkgver=1.0.0.r4.gba12194
+pkgrel=1
 pkgdesc='Sans-serif UI fonts with Noto Sans CJK SC Latin glyphs and proportional punctuation'
 arch=('any')
 url='https://github.com/AkiraLyu/noto-sans'
 license=('OFL-1.1')
 depends=('fontconfig' 'noto-fonts' 'noto-fonts-cjk' 'noto-fonts-emoji')
 makedepends=('git')
+provides=("$_pkgname")
+conflicts=("$_pkgname")
 options=('!debug')
-_commit=ba12194a2355e0096eeb59cb266d921a7d437948
-source=("noto-sans::git+$url.git#commit=$_commit")
+source=("noto-sans::git+$url.git")
 sha256sums=('SKIP')
+
+pkgver() {
+    cd "$srcdir/noto-sans"
+    printf '1.0.0.r%s.g%s\n' "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
+}
 
 package() {
     cd "$srcdir/noto-sans"
 
-    install -Dm644 fonts/*.otf -t "$pkgdir/usr/share/fonts/$pkgname"
+    install -Dm644 fonts/*.otf -t "$pkgdir/usr/share/fonts/$_pkgname"
     install -Dm644 optional/NotoSansAkira-DemiLight.otf \
-        "$pkgdir/usr/share/$pkgname/optional/NotoSansAkira-DemiLight.otf"
+        "$pkgdir/usr/share/$_pkgname/optional/NotoSansAkira-DemiLight.otf"
     install -Dm644 fontconfig/61-noto-sans-akira.conf \
         "$pkgdir/usr/share/fontconfig/conf.avail/61-noto-sans-akira.conf"
     install -d "$pkgdir/usr/share/fontconfig/conf.default"

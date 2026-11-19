@@ -43,26 +43,26 @@ and session files are included.
 paru --sudo run0 -S niri-akira-git
 ```
 
-`shiguang-diary` is built from a pinned commit of
+`shiguang-diary-git` tracks
 [AkiraLyu/shiguang-diary](https://github.com/AkiraLyu/shiguang-diary). It uses system
 Electron and includes the Wayland blur library, desktop launcher and application
 documentation. Its build runs the upstream tests without installing npm dependencies.
 
 ```sh
-paru --sudo run0 -S shiguang-diary
+paru --sudo run0 -S shiguang-diary-git
 shiguang-diary
 ```
 
-`kde-mimeapps-export` exports effective KDE file associations for other desktops.
-It is built from a pinned commit of
+`kde-mimeapps-export-git` exports effective KDE file associations for other desktops.
+It tracks
 [AkiraLyu/kde-mimeapps-export](https://github.com/AkiraLyu/kde-mimeapps-export).
 
 ```sh
-paru --sudo run0 -S kde-mimeapps-export
+paru --sudo run0 -S kde-mimeapps-export-git
 kde-mimeapps-export --dry-run
 ```
 
-`noto-sans-akira` installs six desktop font weights from a pinned commit of
+`noto-sans-akira-git` installs six desktop font weights from
 [AkiraLyu/noto-sans](https://github.com/AkiraLyu/noto-sans). The family preserves
 Noto Sans CJK SC Latin glyphs and provides proportional Western punctuation.
 The optional DemiLight face is stored outside the font search path. The package
@@ -72,7 +72,7 @@ selection. Arch Linux's Fontconfig hook manages the system configuration
 link on installation, upgrade, and removal.
 
 ```sh
-paru --sudo run0 -S noto-sans-akira
+paru --sudo run0 -S noto-sans-akira-git
 ```
 
 Restart browsers after installation or upgrade.
